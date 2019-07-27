@@ -106,6 +106,7 @@ int search(SeqList list , int elem) {
 /*改*/
 SeqList modify(SeqList list , int elem, int val) {
     int pos = search(list, elem);
+    
     list.head[pos] = val;
     return list;
 }
