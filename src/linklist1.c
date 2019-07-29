@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #define SIZE 5
 #define ADDNUM 9
-#define ADDPOS 3
-#define DELPOS 3
+#define ADDPOS 6
+#define DELPOS 5
 #define SEARCHNUM 3
 #define MODIFYPOS 3
 #define MODIFYNUM 27
@@ -66,7 +66,7 @@ void add(Node *p, int elem, int pos) {
 
 /*删*/
 void delete(Node *p, int pos) {
-    //删除位置判断，取值范围为1～length
+    //删除位置判断，取值范围为0～length-1
     int length = p->elem;//传入的是头结点，直接取链表长度值
 
     if (pos >= length || pos < 0) {

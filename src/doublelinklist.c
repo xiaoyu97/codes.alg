@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #define SIZE 5
 #define ADDNUM 9
-#define ADDPOS 3
-#define DELPOS 3
+#define ADDPOS 5
+#define DELPOS 5
 #define SEARCHNUM 3
 #define MODIFYPOS 3
 #define MODIFYNUM 27
@@ -84,9 +84,13 @@ void add(Node *head, int elem, int pos) {
     add->pre = pre;
     pre->next = add;
 
-    //和后结点建立双层逻辑
-    add->next = next;
-    next->pre = add;
+    if (next != NULL) {
+        //和后结点建立双层逻辑
+        add->next = next;
+        next->pre = add;
+    } else {
+        add->next = NULL;
+    }
 
     length ++;//表长度+1
 }
@@ -103,7 +107,10 @@ void delete(Node *head, int pos) {
     Node *next = del->next;//需要删除结点的后结点
 
     pre->next = next;//将前结点的next指针指向后结点
-    next->pre = pre;//将后结点的pre指针指向前结点
+
+    if (next != NULL) {
+        next->pre = pre;    //将后结点的pre指针指向前结点
+    }
 
     free(del);//释放删除结点空间
     del = NULL;
@@ -140,7 +147,7 @@ void modify(Node *p, int pos, int val) {
 }
 
 int main() {
-    Node *head;//创建头结点指针
+    Node *head = (Node *)malloc(sizeof(Node));//创建头结点
     Node *pre = head;//将头结点作为首元结点的前一个结点
 
     for (int i = 0; i < SIZE; i++) {
